@@ -119,8 +119,6 @@ int tabResult[200];
 
 nbrDeciResult = nbrDeci1 + nbrDeci2;
 
-printf("%d\n", nbrDeciResult);
-
 for (i = 0; i <= nbrDeciResult-1; ++i)
 {
     tempo = 0;
@@ -197,7 +195,6 @@ for(i=0; i <= nbrDeciResult-1; i++)
 // Certains "0" inutiles comme ceux des retenues sont supprimés de l'affichage
 
 
-
 // Ligne 1 de l'affichage du tableau
 
 printf("      ");
@@ -216,7 +213,7 @@ for (i = 1; i <= nbrDeci1; ++i)
 }
 printf("____\n");
 
-// Ligne 3 de l'affichage du tableau
+// Ligne 3 de l'affichage du tableau (les retenues)
 
 printf("       ");
 for (i = 0; i<= nbrDeci1-1; i++)
@@ -245,7 +242,7 @@ if (tabRetenues[nbrDeci1] == 0)
 }
 else
 {
-    printf("  1 |\n");
+    printf("  %d |\n", tabRetenues[nbrDeci1]);
 }
 
 // Ligne 5 de l'affichage du tableau
@@ -284,6 +281,7 @@ else
 // Ici on écrit les lignes deux par deux (pour le cas avec le résultat à gauche
 // et le cas avec la retenue à droite)
 
+
 for (i = 2; i <= nbrDeci2; ++i)
 {
     printf(" %d | ", tabResult[i-2]);
@@ -305,15 +303,18 @@ for (i = 2; i <= nbrDeci2; ++i)
     {
         printf("/ %d ", tableau[j][i][1]);
     }
-    if (tabRetenues[nbrDeci1+i] == 0 && nbrDeci1+i <= nbrDeciResult)
+    if (nbrDeci1+i <= nbrDeciResult)
     {
-        printf("|   |\n");
+        if (tabRetenues[nbrDeci1+i] == 0)
+        {
+            printf("|   |\n");
+        }
+        else
+        {
+            printf("| %d |\n", tabRetenues[nbrDeci1+i]);
+        }
     }
-    else if (tabRetenues[nbrDeci1+i] == 1 && nbrDeci1+i <= nbrDeciResult)
-    {
-        printf("| %d |\n", tabRetenues[nbrDeci2-i]);
-    }
-    else if (nbrDeci1+i > nbrDeciResult)
+    else
     {
         printf("|   |\n");
     }
